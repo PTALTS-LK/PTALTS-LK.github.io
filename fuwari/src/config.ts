@@ -55,7 +55,7 @@ export const navBarConfig: NavBarConfig = {
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/icon_clean_1024px.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "PTALTS-LK",
-	bio: "Half Linux: Endless segmentation fault (core dumped)",
+	bio: "Half Linux: Endless Segmentation Fault (Core Dumped)",
 	links: [
 		// {
 		// 	name: "Twitter",
