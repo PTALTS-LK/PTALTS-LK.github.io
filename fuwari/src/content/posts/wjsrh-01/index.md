@@ -263,8 +263,8 @@ lang: ''
 
 ## 06 结尾以及碎碎念
 
-第一次课的内容就这么多了，东西还是很基础的，对于我这种已经用过好几年Linux的人来说:spoiler[BTW I use Archlinux]
+第一次课的内容就这么多了，东西还是很基础的，对于我这种已经用过好几年Linux的人来说轻而易举啊（:spoiler[BTW I use Archlinux]
 
-Redhat默认是GNOME差评，个人觉得GNOME过于奇异搞笑，还是只有Windows-like的KDE用着舒服，比GNOME轻量（应该），自定义性也比GNOME高
+Redhat默认是GNOME差评，个人觉得GNOME过于:spoiler[奇异搞笑]，还是只有Windows-like的KDE用着舒服，比GNOME轻量（应该），自定义性也比GNOME高
 
-第一次课前一讲就抽到我了（难蚌），下节课课前要讲点神秘小内容，准备给大伙来点神秘Linux用户震撼（不是）
+:spoiler[第一次课前一讲就抽到我了（难蚌），下节课课前要讲点神秘小内容，准备给大伙来点神秘Linux用户震撼（不是）]
