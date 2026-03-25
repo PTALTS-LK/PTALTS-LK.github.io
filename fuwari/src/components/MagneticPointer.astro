@@ -69,6 +69,8 @@
     init() {
       this.container = document.querySelector(".pointer");
       window.addEventListener("mousemove", this.move.bind(this));
+      window.addEventListener("touchmove", this.touchMove.bind(this), { passive: true });
+      window.addEventListener("touchstart", this.touchMove.bind(this), { passive: true });
       this.bind_targets_events();
     },
 
@@ -93,11 +95,56 @@
       this.container.style.transform = `translate(${x}px, ${y}px)`;
     },
 
+    touchMove(e) {
+      if (!e.touches || e.touches.length === 0) return;
+
+      const touch = e.touches[0];
+
+      let x = touch.clientX;
+      let y = touch.clientY;
+
+      if (this.current_target) {
+        // 👇 如果元素已经被移除，直接取消 target
+        if (!document.body.contains(this.current_target)) {
+          this.current_target = null;
+
+          this.container.style.setProperty("--width", "2rem");
+          this.container.style.setProperty("--height", "2rem");
+        } else {
+          const rect = this.current_target.getBoundingClientRect();
+
+          // 👇 防止 0,0 bug
+          if (rect.width === 0 || rect.height === 0) {
+            this.current_target = null;
+          } else {
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+
+            x = cx + (x - cx) * 0.1;
+            y = cy + (y - cy) * 0.1;
+          }
+        }
+      }
+
+      this.container.style.transform = `translate(${x}px, ${y}px)`;
+    },
+
     bind_targets_events() {
-      document.querySelectorAll(".mp_target").forEach(ele => {
-        ele.addEventListener("mouseenter", () => {
-          this.current_target = ele;
+      const targets = document.querySelectorAll(".mp_target");
+
+      targets.forEach(ele => {
+        // ✅ 避免重复绑定（关键）
+        if (ele._mp_bound) return;
+        ele._mp_bound = true;
+
+        // ===== 抽象 enter =====
+        const enter = () => {
           const rect = ele.getBoundingClientRect();
+
+          // ✅ 防止 hidden / display:none
+          if (rect.width === 0 || rect.height === 0) return;
+
+          this.current_target = ele;
 
           this.container.style.setProperty(
             "--width",
@@ -107,12 +154,31 @@
             "--height",
             rect.height + window.innerWidth / 100 + "px"
           );
-        });
+        };
 
-        ele.addEventListener("mouseleave", () => {
+        // ===== 抽象 leave =====
+        const leave = () => {
           this.current_target = null;
+
           this.container.style.setProperty("--width", "2rem");
           this.container.style.setProperty("--height", "2rem");
+        };
+
+        // ===== PC =====
+        ele.addEventListener("mouseenter", enter);
+        ele.addEventListener("mouseleave", leave);
+
+        // ===== 移动端 =====
+        ele.addEventListener("touchstart", enter, { passive: true });
+        ele.addEventListener("touchend", leave, { passive: true });
+
+        ele.addEventListener("click", (e) => {
+          const link = ele.closest("a");
+
+          // 👉 只有真正跳转的链接才触发 leave
+          if (link && link.getAttribute("href") && link.getAttribute("href") !== "#") {
+            leave();
+          }
         });
       });
     }
