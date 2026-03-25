@@ -134,7 +134,7 @@ export default defineConfig({
 				{
 					behavior: "append",
 					properties: {
-						className: ["anchor"],
+						className: ["mp_target", "anchor"],
 					},
 					content: {
 						type: "element",
