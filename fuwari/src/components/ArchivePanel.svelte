@@ -109,7 +109,7 @@ onMount(async () => {
                         aria-label={post.data.title}
                         class="group btn-plain !block h-10 w-full rounded-lg hover:text-[initial]"
                 >
-                    <div class="flex flex-row justify-start items-center h-full">
+                    <div class="mp_target flex flex-row justify-start items-center h-full">
                         <!-- date -->
                         <div class="w-[15%] md:w-[10%] transition text-sm text-right text-50">
                             {formatDate(post.data.published)}

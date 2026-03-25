@@ -1,0 +1,125 @@
+---
+// 无需前端框架，纯客户端脚本
+---
+
+<div class="pointer">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<style>
+  .pointer {
+    --width: 2rem;
+    --height: 2rem;
+    position: fixed;
+    top: calc(var(--height) / -2);
+    left: calc(var(--width) / -2);
+    width: var(--width);
+    height: var(--height);
+    transition: transform 0.2s ease-out, top 0.2s ease-out, left 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out ;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .pointer div {
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-width: 0.2rem;
+    border-color: #c35e5b;
+  }
+
+  .pointer div:nth-child(1) {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .pointer div:nth-child(2) {
+    top: 0;
+    right: 0;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  .pointer div:nth-child(3) {
+    bottom: 0;
+    left: 0;
+    border-top: none;
+    border-right: none;
+  }
+
+  .pointer div:nth-child(4) {
+    bottom: 0;
+    right: 0;
+    border-top: none;
+    border-left: none;
+  }
+</style>
+
+<script>
+  // ⚠️ 必须用 client-side 执行
+  const pointer = {
+    container: null,
+    current_target: null,
+
+    init() {
+      this.container = document.querySelector(".pointer");
+      window.addEventListener("mousemove", this.move.bind(this));
+      this.bind_targets_events();
+    },
+
+    move(e) {
+      if (!this._boundOnce || document.querySelectorAll(".mp_target").length !== this._lastCount) {
+        this.bind_targets_events();
+        this._boundOnce = true;
+        this._lastCount = document.querySelectorAll(".mp_target").length;
+      }
+      let x = e.clientX;
+      let y = e.clientY;
+
+      if (this.current_target) {
+        const rect = this.current_target.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+
+        x = cx + (x - cx) * 0.1;
+        y = cy + (y - cy) * 0.1;
+      }
+
+      this.container.style.transform = `translate(${x}px, ${y}px)`;
+    },
+
+    bind_targets_events() {
+      document.querySelectorAll(".mp_target").forEach(ele => {
+        ele.addEventListener("mouseenter", () => {
+          this.current_target = ele;
+          const rect = ele.getBoundingClientRect();
+
+          this.container.style.setProperty(
+            "--width",
+            rect.width + window.innerWidth / 100 + "px"
+          );
+          this.container.style.setProperty(
+            "--height",
+            rect.height + window.innerWidth / 100 + "px"
+          );
+        });
+
+        ele.addEventListener("mouseleave", () => {
+          this.current_target = null;
+          this.container.style.setProperty("--width", "2rem");
+          this.container.style.setProperty("--height", "2rem");
+        });
+      });
+    }
+  };
+
+  // ✅ Astro 推荐：DOMContentLoaded 后执行
+  window.addEventListener("DOMContentLoaded", () => {
+    pointer.init();
+  });
+</script>
