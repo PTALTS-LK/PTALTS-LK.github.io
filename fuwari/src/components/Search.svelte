@@ -152,7 +152,7 @@ $: if (initialized && keywordMobile) {
 
 <!-- toggle btn for phone/tablet view -->
 <button on:click={togglePanel} aria-label="Search Panel" id="search-switch"
-        class="btn-plain scale-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90">
+        class="mp_target btn-plain scale-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90">
     <Icon icon="material-symbols:search" class="text-[1.25rem]"></Icon>
 </button>
 
@@ -161,7 +161,7 @@ $: if (initialized && keywordMobile) {
 top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
 
     <!-- search bar inside panel for phone/tablet -->
-    <div id="search-bar-inside" class="flex relative lg:hidden transition-all items-center h-11 rounded-xl
+    <div id="search-bar-inside" class="mp_target flex relative lg:hidden transition-all items-center h-11 rounded-xl
       bg-black/[0.04] hover:bg-black/[0.06] focus-within:bg-black/[0.06]
       dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10
   ">

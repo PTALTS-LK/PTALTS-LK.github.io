@@ -23,7 +23,7 @@ $: if (hue || hue === 0) {
             before:absolute before:-left-3 before:top-[0.33rem]"
         >
             {i18n(I18nKey.themeColor)}
-            <button aria-label="Reset to Default" class="btn-regular w-7 h-7 rounded-md  active:scale-90 will-change-transform"
+            <button aria-label="Reset to Default" class="mp_target btn-regular w-7 h-7 rounded-md  active:scale-90 will-change-transform"
                     class:opacity-0={hue === defaultHue} class:pointer-events-none={hue === defaultHue} on:click={resetHue}>
                 <div class="text-[var(--btn-content)]">
                     <Icon icon="fa6-solid:arrow-rotate-left" class="text-[0.875rem]"></Icon>
@@ -37,7 +37,7 @@ $: if (hue || hue === 0) {
             </div>
         </div>
     </div>
-    <div class="w-full h-6 px-1 bg-[oklch(0.80_0.10_0)] dark:bg-[oklch(0.70_0.10_0)] rounded select-none">
+    <div class="mp_target w-full h-6 px-1 bg-[oklch(0.80_0.10_0)] dark:bg-[oklch(0.70_0.10_0)] rounded select-none">
         <input aria-label={i18n(I18nKey.themeColor)} type="range" min="0" max="360" bind:value={hue}
                class="slider" id="colorSlider" step="5" style="width: 100%">
     </div>
