@@ -23,7 +23,7 @@ export function pluginCustomCopyButton() {
 						type: "element" as const,
 						tagName: "button",
 						properties: {
-							className: ["copy-btn"],
+							className: ["mp_target", "copy-btn"],
 							"aria-label": "Copy code",
 						},
 						children: [
