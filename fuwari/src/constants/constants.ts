@@ -1,5 +1,8 @@
 export const PAGE_SIZE = 8;
 
+// Friends page: maximum number of friend link cards per page
+export const FRIENDS_PAGE_SIZE = 20;
+
 export const LIGHT_MODE = "light",
 	DARK_MODE = "dark",
 	AUTO_MODE = "auto";

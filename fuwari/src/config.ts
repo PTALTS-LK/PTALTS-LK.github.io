@@ -1,5 +1,6 @@
 import type {
 	ExpressiveCodeConfig,
+	FriendsConfig,
 	LicenseConfig,
 	NavBarConfig,
 	ProfileConfig,
@@ -43,6 +44,7 @@ export const navBarConfig: NavBarConfig = {
 	links: [
 		LinkPreset.Home,
 		LinkPreset.Archive,
+		LinkPreset.Friends,
 		LinkPreset.About,
 		// {
 		// 	name: "GitHub",
@@ -81,6 +83,32 @@ export const licenseConfig: LicenseConfig = {
 	enable: true,
 	name: "CC BY-NC-SA 4.0",
 	url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+};
+
+// 友链页：每页最多 20 个友链卡片，桌面端两列网格排版，超出自动分页
+export const friendsConfig: FriendsConfig = {
+	links: [
+		// 以下为示例，替换成自己的友链即可（avatar 可填外链图片地址，description 可省略）
+		// {
+		// 	name: "Fuwari",
+		// 	url: "https://github.com/saicaca/fuwari",
+		// 	avatar: "https://avatars.githubusercontent.com/u/101227423",
+		// 	description: "A static blog template built with Astro.",
+		// },
+		// {
+		// 	name: "Astro",
+		// 	url: "https://astro.build/",
+		// 	avatar: "https://avatars.githubusercontent.com/u/44914786",
+		// 	description: "The web framework for content-driven websites.",
+		// },
+		//
+		{
+			name: "QingXi的小屋",
+			url: "https://blog.qing-xi.top",
+			avatar: "https://avatars.githubusercontent.com/u/212183851",
+			description: "神秘滚木用户",
+		},
+	],
 };
 
 export const expressiveCodeConfig: ExpressiveCodeConfig = {

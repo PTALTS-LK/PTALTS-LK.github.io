@@ -48,6 +48,7 @@ export enum LinkPreset {
 	Home = 0,
 	Archive = 1,
 	About = 2,
+	Friends = 3,
 }
 
 export type NavBarLink = {
@@ -75,6 +76,21 @@ export type LicenseConfig = {
 	enable: boolean;
 	name: string;
 	url: string;
+};
+
+export type FriendLink = {
+	/** Display name of the site */
+	name: string;
+	/** Link to the site, will be opened in a new tab */
+	url: string;
+	/** Avatar image URL, can be an external link */
+	avatar?: string;
+	/** Short introduction of the site */
+	description?: string;
+};
+
+export type FriendsConfig = {
+	links: FriendLink[];
 };
 
 export type LIGHT_DARK_MODE =
